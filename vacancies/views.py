@@ -1,11 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseNotFound
-from django.views import View
-from django.http import HttpResponseNotFound, HttpResponseServerError
+from django.shortcuts import get_object_or_404
 from django.db.models import Count
+from django.views.generic import TemplateView, ListView, DetailView
 
 from .models import Company, Specialty, Vacancy
-from django.views.generic import TemplateView, ListView, DetailView
+
 
 class MainView(TemplateView):
     template_name = "main.html"
