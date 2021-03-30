@@ -25,12 +25,12 @@ class Specialty(models.Model):
 
 class Vacancy(models.Model):
     title = models.CharField(max_length=128)
-    specialty = models.ForeignKey(Specialty, on_delete=models.CASCADE, related_name="vacancies")
+    speciality = models.ForeignKey(Specialty, on_delete=models.CASCADE, related_name="vacancies")
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="vacancies")
     skills = models.CharField(max_length=128)
     description = models.CharField(max_length=3000)
-    salary_min = models.IntegerField
-    salary_max = models.IntegerField
+    salary_min = models.IntegerField()
+    salary_max = models.IntegerField()
     published_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
