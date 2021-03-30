@@ -37,10 +37,10 @@
     </div>
     <section>
       <div class="text-center">
-        <img src="../static/{{object.logo}}" width="130" height="80" alt="">
+        <img src="{{object.logo}}" width="130" height="80" alt="">
       </div>
       <h1 class="h1 text-center mx-auto mt-0 pt-1" style="font-size: 70px;"><strong>{{object.name}}</strong></h1>
-      <p class="text-center pt-1">Компания, {{object.location}}, вакансий: {{vacancies.count}}</p>
+      <p class="text-center pt-1">Компания "{{ object.name }}", {{object.location}}, вакансий: {{vacancies.count}}</p>
       <div class="row mt-5">
           {% for vac in vacancies %}
         <div class="col-12 col-lg-8 offset-lg-2 m-auto">
@@ -53,7 +53,9 @@
                   </a>
                     {% for sp in speciality_list %}
                     {% if sp.id == vac.speciality_id %}
+                  <a href="{% url 'categories' code=sp.code %}">
                   <p class="h5 mb-2">{{sp.title}}</p>
+                  </a>
                     {% endif %}
                     {% endfor %}
                   <p class="mb-2">{{vac.skills}}</p>
@@ -61,7 +63,9 @@
                   <p class="text-muted pt-1">{{vac.published_at}}</p>
                 </div>
                 <div class="col-12 col-md-4 col-lg-3 d-flex align-items-end">
-                  <img src="../static/{{object.logo}}" width="130" height="80" alt="">
+                  <a href="{% url 'company_detail' pk=object.id %}">
+                  <img src="{{object.logo}}" width="130" height="80" alt="">
+                  </a>
                 </div>
               </div>
             </div>

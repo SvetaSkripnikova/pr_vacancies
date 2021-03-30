@@ -45,7 +45,9 @@
                   </a>
                     {% for sp in speciality_list %}
                     {% if sp.id == obj.speciality_id %}
+                  <a href="{% url 'categories' code=sp.code %}">
                   <p class="h5 mb-2">{{ sp.title }}</p>
+                  </a>
                     {% endif %}
                     {% endfor %}
                   <p class="mb-2">{{obj.skills}}</p>
@@ -55,7 +57,7 @@
                 <div class="col-12 col-md-4 col-lg-3 d-flex align-items-end">
                     {% for com in company_list %}
                     {% if com.id == obj.company_id %}
-                  <a href="#"><img src="../static/{{com.logo}}" width="130" height="80" alt=""></a>
+                  <a href="{% url 'company_detail' pk=com.id %}"><img src="{{com.logo}}" width="130" height="80" alt=""></a>
                     {% endif %}
                     {% endfor %}
                 </div>

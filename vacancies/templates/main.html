@@ -61,10 +61,12 @@
         {% for sp in specialities %}
         <div class="col-6 col-md-6 col-lg-3">
           <div class="card pt-4 text-center mb-4">
+            <a href="{% url 'categories' code=sp.code %}">
             <img class="mx-auto d-block" src="{{sp.picture}}" width="80" height="80" alt="">
+            </a>
             <div class="card-body">
               <p class="card-text mb-2"> {{ sp.title }} </p>
-              <p class="card-text"><a href="#">вакансий: {{ sp.vacancies_Count }}</a></p>
+              <p class="card-text"><a href="{% url 'categories' code=sp.code %}">вакансий: {{ sp.vacancies_Count }}</a></p>
             </div>
           </div>
         </div>
@@ -78,11 +80,11 @@
         {% for com in companies %}
         <div class="col-6 col-md-6 col-lg-3">
           <div class="card pt-4 text-center mb-4">
-            <a href="#" style="max-width: 150px;" class="mx-auto d-block">
-              <img class="mx-auto d-block mw-100" src="../static/{{com.logo}}" width="150" alt="">
+            <a href="{% url 'company_detail' pk=com.id %}" style="max-width: 150px;" class="mx-auto d-block">
+              <img class="mx-auto d-block mw-100" src="{{com.logo}}" width="150" alt="">
             </a>
             <div class="card-body">
-              <p class="card-text"><a href="#">вакансий: {{ com.vacancies_Count }}</a></p>
+              <p class="card-text"><a href="{% url 'company_detail' pk=com.id %}">вакансий: {{ com.vacancies_Count }}</a></p>
             </div>
           </div>
         </div>

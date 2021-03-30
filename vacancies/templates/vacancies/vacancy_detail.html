@@ -42,7 +42,9 @@
         <section class="pl-3">
             {% for com in company_list %}
             {% if com.id == object.company_id %}
-          <a href="#"><img src="../static/{{com.logo}}" width="130" height="80" alt=""></a>
+          <a href="{% url 'company_detail' pk=com.id %}">
+              <img src="{{com.logo}}" width="130" height="80" alt="">
+          </a>
             {% endif %}
             {% endfor %}
           <div class="d-flex align-items-baseline align-content-baseline">

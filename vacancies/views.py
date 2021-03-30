@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseNotFound
 from django.views import View
 from django.http import HttpResponseNotFound, HttpResponseServerError
@@ -39,6 +39,19 @@ class DetailVacancyView(DetailView):
         return context
 
 
+class ListCategoriesView(ListView):
+    model = Vacancy
+    context_object_name = "vacancy_list"
+
+    def get_context_data(self, **kwargs):
+        context = super(ListCategoriesView, self).get_context_data(**kwargs)
+        context["title"] = get_object_or_404(Specialty, code=self.kwargs["code"]).title
+        context["object_list"] = Vacancy.objects.filter(speciality__title=context["title"])
+        context["company_list"] = Company.objects.all()
+        context["speciality_list"] = Specialty.objects.all()
+        return context
+
+
 class DetailCompanyView(DetailView):
     model = Company
 
@@ -48,10 +61,4 @@ class DetailCompanyView(DetailView):
         context["vacancies"] = Vacancy.objects.filter(company__id=self.kwargs["pk"])
         context["speciality_list"] = Specialty.objects.all()
         return context
-
-def company_view(request):
-    return render(request, 'company.html')
-
-def category_view(request):
-    return render(request, 'vacancies.html')
 
