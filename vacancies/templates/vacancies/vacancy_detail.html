@@ -53,7 +53,9 @@
           </div>
             {% for sp in speciality_list %}
             {% if sp.id == object.speciality_id %}
+          <a href="{% url 'categories' code=sp.code %}">
           <p class="h5 mt-2">{{sp.title}}</p>
+          </a>
             {% endif %}
             {% endfor %}
           <p class="mt-2">{{object.skills}}</p>
