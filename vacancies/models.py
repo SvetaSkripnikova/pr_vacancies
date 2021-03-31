@@ -20,7 +20,7 @@ class Specialty(models.Model):
     picture = models.URLField(default='https://place-hold.it/100x60')
 
     def __str__(self):
-        return self.code
+        return self.title
 
 
 class Vacancy(models.Model):
